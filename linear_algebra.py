@@ -55,16 +55,13 @@ class linear_alg():
                 for i in args:
                     listMult.append(i[j])
                 
-                print(listMult)
                 for numero in listMult:
-                    print(numero)
                     if aux == 0:
                         aux += 1
                         resultado = numero
                     else:
                         resultado -= numero
 
-                print(resultado)
                 listResult.append(resultado)
                 j += 1
 
@@ -79,7 +76,14 @@ class linear_alg():
         
         
     def norm(self, vector):
-        pass
+        try:
+            listResult = []
+            for i in vector:
+                listResult.append(i ** 2)
+
+            return sum(listResult) ** 0.5
+        except ValueError:
+            print("Error: The function expects a list.")
 
 # Vector sum test
 algebra = linear_alg()
@@ -88,4 +92,6 @@ multiplicacao = algebra.product([2, 1], [3, 1], [4, -2])
 escalar = algebra.scalar([2, -5, 7, 2, -1], 2)
 
 distancia = algebra.RN([2, -4, 1], [3, 2, -5])
-print(distancia)
+
+norma = algebra.norm([4, 2])
+print(norma)
