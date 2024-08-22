@@ -89,8 +89,10 @@ class linear_alg():
     def product_matrix(self, A, B):
         num_linhas_a, num_colunas_a = len(A), len(A[0])
         num_linhas_b, num_colunas_b = len(B), len(B[0])
-
-        assert num_colunas_a == num_linhas_b
+        try:
+            assert num_colunas_a == num_linhas_b
+        except TypeError:
+            print("The matrices must be the same size")
         result = []
 
         for linha in range(num_linhas_a):
@@ -107,21 +109,27 @@ class linear_alg():
         
     def scalar_matrix(self, K, A):
         C = []
-        for i in A:
-            result = []
-            for j in i:
-                result.append(K * j)
-            C.append(result)
+        try:
+            for i in A:
+                result = []
+                for j in i:
+                    result.append(K * j)
+                C.append(result)
 
-
-        return(C)
-        
+            return(C)
+        except:
+            print("Error when calculating matrix results")
 
     def subtract_matrix():
         pass
 
-    def sum_matrix():
-        pass
+    def sum_matrix(self, A, B):
+        num_linhas_a, num_colunas_a = len(A), len(A[0])
+        num_linhas_b, num_colunas_b = len(B), len(B[0])
+
+        for linha in num_linhas_a:
+            for value in linha:
+                print(value)
 
 # Vector sum test
 algebra = linear_alg()
