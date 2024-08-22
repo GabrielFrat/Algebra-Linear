@@ -85,13 +85,54 @@ class linear_alg():
         except ValueError:
             print("Error: The function expects a list.")
 
+
+    def product_matrix(self, A, B):
+        num_linhas_a, num_colunas_a = len(A), len(A[0])
+        num_linhas_b, num_colunas_b = len(B), len(B[0])
+
+        assert num_colunas_a == num_linhas_b
+        result = []
+
+        for linha in range(num_linhas_a):
+            result.append([])
+
+            for coluna in range(num_colunas_b):
+                result[linha].append(0)
+
+                for k in range(num_colunas_a):
+                    result[linha][coluna] += A[linha][k] * B[k][coluna]
+
+        return result
+            
+        
+    def scalar_matrix(self, K, A):
+        C = []
+        for i in A:
+            result = []
+            for j in i:
+                result.append(K * j)
+            C.append(result)
+
+
+        return(C)
+        
+
+    def subtract_matrix():
+        pass
+
+    def sum_matrix():
+        pass
+
 # Vector sum test
 algebra = linear_alg()
 soma = algebra.sum_vector([2, 1], [3, 1], [4, 2])
 multiplicacao = algebra.product([2, 1], [3, 1], [4, -2])
 escalar = algebra.scalar([2, -5, 7, 2, -1], 2)
-
 distancia = algebra.RN([2, -4, 1], [3, 2, -5])
-
 norma = algebra.norm([4, 2])
-print(norma)
+
+soma_matriz = algebra.product_matrix([[1, 2], [2, 1]], [[2, 4], [4, 4]])
+print(soma_matriz)
+
+escalar_matriz = algebra.scalar_matrix(2, [[1, 2], [1, 3]])
+print(escalar_matriz)
