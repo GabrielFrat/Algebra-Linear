@@ -118,18 +118,41 @@ class linear_alg():
 
             return(C)
         except:
+            print("Error when calculating matrix results") 
+
+    def subtract_matrix(self, A, B):
+        try:
+            C = []
+            num_linhas_a, num_colunas_a = len(A), len(A[0])
+            num_linhas_b, num_colunas_b = len(B), len(B[0])
+
+            for linha in range(num_linhas_a):
+                result = []
+                for value in range(0, len(A[linha])):
+                    result.append(A[linha][value] - B[linha][value])
+
+                C.append(result)
+            
+            return C
+        except TypeError:
             print("Error when calculating matrix results")
 
-    def subtract_matrix():
-        pass
-
     def sum_matrix(self, A, B):
-        num_linhas_a, num_colunas_a = len(A), len(A[0])
-        num_linhas_b, num_colunas_b = len(B), len(B[0])
+        try:
+            C = []
+            num_linhas_a, num_colunas_a = len(A), len(A[0])
+            num_linhas_b, num_colunas_b = len(B), len(B[0])
 
-        for linha in num_linhas_a:
-            for value in linha:
-                print(value)
+            for linha in range(num_linhas_a):
+                result = []
+                for value in range(0, len(A[linha])):
+                    result.append(A[linha][value] + B[linha][value])
+
+                C.append(result)
+            
+            return C
+        except TypeError:
+            print("Error when calculating matrix results")
 
 # Vector sum test
 algebra = linear_alg()
@@ -140,7 +163,6 @@ distancia = algebra.RN([2, -4, 1], [3, 2, -5])
 norma = algebra.norm([4, 2])
 
 soma_matriz = algebra.product_matrix([[1, 2], [2, 1]], [[2, 4], [4, 4]])
-print(soma_matriz)
-
 escalar_matriz = algebra.scalar_matrix(2, [[1, 2], [1, 3]])
-print(escalar_matriz)
+soma_matriz = algebra.sum_matrix([[1, 2], [2, 1], [2, 5]], [[2, 4], [4, 4], [2, 7]])
+sub_matriz = algebra.subtract_matrix([[1, 2], [2, 1], [2, 5]], [[2, 4], [4, 4], [2, 7]])
