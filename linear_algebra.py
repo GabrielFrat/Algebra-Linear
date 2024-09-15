@@ -172,19 +172,43 @@ class linear_alg():
                 for value in aux:
                     matrix[i].append(value)
 
-        det = ((matrix[0][0] * matrix[1][1] * matrix[2][2]) + (matrix[0][1]  
-                    * matrix[1][2] * matrix[2][0]) + (matrix[0][2] * matrix[1][0] * matrix[2][1])) - ((matrix[2][0] 
-                    * matrix[1][1] * matrix[0][2]) + (matrix[2][1]  * matrix[1][2] * matrix[0][0]) + (matrix[2][2] 
-                    * matrix[1][0] * matrix[0][1]))
-        return det
+        cont = 0
+        list_Soma = []
+        while cont != num_colunas_a:
+            aux = cont
+            value = 1
+            for i in range(0, len(matrix)):
+                x = matrix[i][aux]
+                value = value * x
+                aux += 1
+
+            list_Soma.append(value)
+            cont += 1
+
+        cont = 0
+        len_linha = len(matrix[0]) - 1
+        while cont != num_colunas_a:
+            aux = len_linha
+            value = 1
+            for i in range(0, len(matrix)):
+                x = matrix[i][aux]
+                value = value * x
+                aux -= 1
+
+            list_Soma.append(value * (-1))
+            len_linha -= 1
+            cont += 1
+
+
+        valor = 0
+        for i in list_Soma:
+            valor = valor + i
+
+        return valor
 
     def inverse_matrix(self, matrix):
+        matriz_b = matrix
 
-        def verify(matrix):
-            pass
-
-        def function(matrix):
-            pass
 
 # Vector sum test
 algebra = linear_alg()
@@ -200,5 +224,7 @@ soma_matriz = algebra.sum_matrix([[1, 2], [2, 1], [2, 5]], [[2, 4], [4, 4], [2, 
 sub_matriz = algebra.subtract_matrix([[1, 2], [2, 1], [2, 5]], [[2, 4], [4, 4], [2, 7]])
 
 
-determinante = algebra.det([[1, 3, 2], [4, 2, 4], [3, 1, 5]])
+determinante = algebra.det([[1, 3, 2, 5], [4, 2, 4, 2], [3, 1, 5, 1], [3, 4, 1, 9]])
 print(determinante)
+
+matriz_inversa = algebra.inverse_matrix([[1, 3], [4, 2]])
